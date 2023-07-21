@@ -1,4 +1,6 @@
--- 05/07/2023
+/*
+	Fecha de creación: 05-07-2023
+*/
 
 drop database if exists DBPeliculasIN5AV;
 
@@ -17,6 +19,8 @@ create table Usuarios(
 	primary key PK_idUsuario(idUsuario)
 );
 
+
+
 create table Pago(
 	idPago int not null auto_increment,
     cantidadAPagar double not null,
@@ -28,6 +32,13 @@ create table Pago(
     constraint FK_Pago_Usuarios foreign key(idUsuario)
 		references Usuarios(idUsuario)
 );
+
+create table TipoTarjeta(
+	idTipoTarjeta int not null auto_increment,
+    tipoTarjeta varchar(30),
+    primary key PK_idTipoTarjeta(idTipoTarjeta)
+);
+
 
 create table Proveedores(
 	idProveedor int not null auto_increment,
@@ -89,22 +100,22 @@ create table ServicioCliente(
 		references Producto(idProducto)
 );
 
-create table Descuento(
-	idDescuento int not null auto_increment,
-    porcentajeDescuento int not null,
-    fechaInicio date not null,
-    fechaFinal date not null,
-    primary key PK_idDescuento(idDescuento)
+create table Promocion(
+	idPromocion int not null auto_increment,
+    porcentajePromocion int not null,
+    fechaInicio datetime not null,
+    fechaFinal datetime not null,
+    primary key PK_idPromocion(idPromocion)
 );
 
-create table DetalleDescuento(
+create table DetallePromocion(
 	idDetallePromocion int not null auto_increment,
     precioFinal double not null,
-    idDescuento int not null,
+    idPromocion int not null,
     idProducto int not null,
     primary key PK_idDetallePromocion(idDetallePromocion),
-    constraint FK_DetalleDescuento_Descuento foreign key(idDescuento)
-		references Descuento(idDescuento),
+    constraint FK_DetallePromocion_Promocion foreign key(idPromocion)
+		references Promocion(idPromocion),
 	constraint FK_DetallePromocion_Producto foreign key(idProducto)
 		references Producto(idProducto)
 );
@@ -131,6 +142,14 @@ Insert into Usuarios (nombreUsuario, apellidoUsuario, usuario, pass, email)
 Insert into Usuarios (nombreUsuario, apellidoUsuario, usuario, pass, email)
 	values ('Sergio', 'Tepaz', 'TePaz', 'SSergio', 'stepaz-2022164@kinal.edu.gt');    
     
+-- ----------------------------------------------------------------
+
+insert into TipoTarjeta(tipoTarjeta)
+	values('Debito');
+insert into TipoTarjeta(tipoTarjeta)
+	values('Credito');
+insert into TipoTarjeta(tipoTarjeta)
+	values('Regalo');
     
 -- ----------------------------------------------------------------
 
@@ -182,16 +201,16 @@ Insert into ServicioCliente (descripcion, idUsuario, idProducto)
 
 -- -------------------------------------------------------------------
 
-Insert into Descuento (porcentajeDescuento, fechaInicio, fechaFinal)
+Insert into Promocion (porcentajePromocion, fechaInicio, fechaFinal)
 	values(25, '2023-06-03', '2023-06-17');
-Insert into Descuento (porcentajeDescuento, fechaInicio, fechaFinal)
+Insert into Promocion (porcentajePromocion, fechaInicio, fechaFinal)
 	values(10, '2023-03-10', '2023-03-24');
 
 -- -------------------------------------------------------------------
 
-Insert into DetalleDescuento (precioFinal, idDescuento, idProducto)
+Insert into DetallePromocion (precioFinal, idPromocion, idProducto)
 	values(75.41, 1, 1);
-Insert into DetalleDescuento (precioFinal, idDescuento, idProducto)
+Insert into DetallePromocion (precioFinal, idPromocion, idProducto)
 	values(225.00, 1, 1);
 
 -- ---------------------------------------------------------------------
@@ -200,3 +219,6 @@ Insert into DetallePago(cantidad, idProducto, idPago, idCesta)
 	values(1, 1, 1, 1);
 Insert into DetallePago(cantidad, idProducto, idPago, idCesta)
 	values(1, 2, 2, 2);
+
+
+select * from TipoTarjeta;
