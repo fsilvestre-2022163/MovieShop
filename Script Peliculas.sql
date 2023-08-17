@@ -130,8 +130,12 @@ Insert into Usuarios (nombreUsuario, apellidoUsuario, usuario, pass, email)
 	values ('James Brian', 'Sipac Sipac', 'Sipac15', 'SipacSipac', 'rsipac-2022086@kinal.edu.gt');
 Insert into Usuarios (nombreUsuario, apellidoUsuario, usuario, pass, email)
 	values ('Sergio', 'Tepaz', 'TePaz', 'SSergio', 'stepaz-2022164@kinal.edu.gt');    
-    
-    
+    Insert into Usuarios (nombreUsuario, apellidoUsuario, usuario, pass, email)
+	values ('Sergio', 'Tepaz', 'jp', '12', 'stepaz-2022164@kinal.edu.gt');   
+     Insert into Usuarios (nombreUsuario, apellidoUsuario, usuario, pass, email)
+	values ('Sergio', 'Tepaz', 'parmas', '12', 'stepaz-2022164@kinal.edu.gt'); 
+ Insert into Usuarios (nombreUsuario, apellidoUsuario, usuario, pass, email)
+	values ('Sergio', 'Tepaz', 'parmas', '12', 'stepaz-2022164@kinal.edu.gt');     
 -- ----------------------------------------------------------------
 
 Insert into Pago (cantidadAPagar, tipoTargeta, tipoPago, fechaPago, idUsuario)
